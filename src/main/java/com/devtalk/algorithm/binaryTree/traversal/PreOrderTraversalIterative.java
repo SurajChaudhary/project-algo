@@ -1,0 +1,50 @@
+package com.devtalk.algorithm.binaryTree.traversal;
+
+import java.util.Stack;
+
+public class PreOrderTraversalIterative {
+	
+	public static void main(String[] args) {
+
+		TreeNode root = new TreeNode(1);
+		root.left = new TreeNode(2);
+		root.right = new TreeNode(3);
+		root.left.left = new TreeNode(4);
+		root.left.right = new TreeNode(5);
+		root.right.left = new TreeNode(6);
+		root.right.right = new TreeNode(7);
+		root.left.left.left = new TreeNode(8);
+		root.left.left.right = new TreeNode(9);
+		root.right.right.left = new TreeNode(10);
+		root.right.right.right = new TreeNode(11);
+
+		printPreOrderIterative(root);
+
+	}
+
+	private static void printPreOrderIterative(TreeNode root) {
+		if (root == null) {
+			return;
+		}
+		TreeNode node = root;
+		Stack<TreeNode> stack = new Stack<>();
+		while (node != null || !stack.isEmpty()) {
+
+			while (node != null) {
+				System.out.print(node.data + " ");
+				stack.push(node);
+				node = node.left;
+			}
+
+			while (!stack.isEmpty()) {
+				TreeNode tNode = stack.pop();
+				if (tNode.right != null) {
+					node = tNode.right;
+					break;
+				}
+			}
+		}
+
+	}
+
+}
